@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "[*] Setting default policies to DENY ALL ingress..."
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+echo "[*] Enabling authorized service ports..."
+sudo ufw allow 22/tcp comment 'SSH Management'
+sudo ufw allow 80/tcp comment 'HTTP Web'
+sudo ufw allow 443/tcp comment 'HTTPS Secure Web'
+
+echo "[*] Activating Firewall configuration..."
+sudo ufw --force enable
+
+echo "[*] Final Verification State:"
+sudo ufw status verbose
